@@ -1,0 +1,16 @@
+[Unit]
+Description=Balance - Simple TCP Load Balancer
+After=docker.service
+Requires=docker.service
+
+[Service]
+User=luke
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStartPre=-/usr/bin/docker pull lukebond/docker-balance
+ExecStart=/usr/bin/docker run --name %n --net=host -p 9000:9000 lukebond/docker-balance -f 9000 127.0.0.1:9001 127.0.0.1:9002 127.0.0.1:9003
+TimeoutStartSec=0
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

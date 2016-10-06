@@ -1,0 +1,20 @@
+[Unit]
+Description=HTTP Hello World
+After=docker.service
+Requires=docker.service
+Wants=docker.redis.service
+
+[Service]
+Environment=REDIS_HOST=redis
+Environment=LISTEN_PORT=900%i
+User=luke
+ExecStartPre=-/usr/bin/docker stop %p-%i
+ExecStartPre=-/usr/bin/docker rm %p-%i
+ExecStartPre=-/usr/bin/docker pull lukebond/demo-api-redis
+ExecStart=/usr/bin/docker run --rm --env REDIS_HOST --env LISTEN_PORT --name %p-%i -p 900%i:900%i --link docker.redis.service:redis lukebond/demo-api-redis
+Restart=always
+RestartSec=500ms
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
