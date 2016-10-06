@@ -29,12 +29,6 @@
 
 ---
 
-TODO
-
-6. create github repo
-
----
-
 # WHO AM I?
 
 - I'm a backend developer turned DevOps practitioner
