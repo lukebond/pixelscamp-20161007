@@ -3,7 +3,7 @@
 Meant to be viewed with [mdp](https://github.com/visit1985/mdp) markdown presentation tool:
 
 ```
-$ mdp nodeconf-oslo-20160604.md
+$ mdp pixelscamp-20161007.md
 ```
 
 The unit files demonstrated in the talk are in `unit-files/final`.
